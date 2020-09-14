@@ -87,6 +87,5 @@ The json data returned should at least have the following elements
 
 Choose one of the following
 
-- push a branch to this repo
 - provide a public repo
 - zip all files and email
