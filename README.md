@@ -16,6 +16,9 @@ If there isn't time to fix everything, you can simply point out what the issues 
 
 ## Getting started
 
+To install the dependencies run:
+`yarn`
+
 To start the development server run:
 `yarn start`
 
