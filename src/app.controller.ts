@@ -3,6 +3,7 @@ import { Controller, Get, Post, Body, Query } from '@nestjs/common';
 export class AppController {
   private db = [];
 
+  // Refactoring by object destructuring
   @Get()
   find(@Query('search') input?) {
     if (!input) {
