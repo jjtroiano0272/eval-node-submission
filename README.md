@@ -1,3 +1,21 @@
+#### Found bugs & deficiencies
+
+- [ ] It is possible to create a book while only specifying title
+- [ ] GET with no author field present still returns all data
+- [ ] GET with no args returns the data, but not in ascending order by title
+
+#### TODO
+
+- [x] Refactor Controller
+- [ ] Module does not need refactoring
+- [ ]
+- [ ]
+
+CONTROLLER
+
+- I decided against destructuring this.db in Controller because it'll lead to the same amount of code (still has to be repeated, just a shorter var name) and I find it'd be a little easier to follow within the functions as it's more explicit.
+- Logic refactor, as the original code could be more elegant.
+
 # Node Technical Assessment
 
 ## Overview
