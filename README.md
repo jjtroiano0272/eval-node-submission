@@ -1,20 +1,32 @@
 #### Found bugs & deficiencies
 
-- [ ] It is possible to create a book while only specifying title
-- [ ] GET with no author field present still returns all data
-- [ ] GET with no args returns the data, but not in ascending order by title
+- It is possible to create a book while only specifying title
+- GET with no author field present still returns all data
+- GET with no args returns the data, but not in ascending order by title
 
-#### TODO
+#### Notes
 
-- [x] Refactor Controller
-- [ ] Module does not need refactoring
-- [ ]
-- [ ]
+* I decided against destructuring this.db in Controller because it'll lead to the same amount of code (still has to be repeated, just a shorter var name) and I find it'd be a little easier to follow within the functions as it's more explicit.
+* Logic was refactored, as the original code could be more elegant.
+* After reviewing the code and tinkering, I've come to the conclusion that there could be a much better way of implementing the 'disallow null entries on /create' but these changes require adding features, and it's already stated that the program is feature complete.
+* What would be best is probably to restructure the @Get and @Create, give @Get an arg, and permit @Create iff title exists and no 'invalid fields' were found. Below is what I wanted to add, but does not accomplish this with the structure it has...you can still submit empty data to the API.
 
-CONTROLLER
+```
+  private db = [];
+  private validFields = ["author", "title"];
+  
+  // ...
 
-- I decided against destructuring this.db in Controller because it'll lead to the same amount of code (still has to be repeated, just a shorter var name) and I find it'd be a little easier to follow within the functions as it's more explicit.
-- Logic refactor, as the original code could be more elegant.
+  @Post('create')
+  create(@Body() input) {
+    const invalidFields = Object.keys(input).filter(field=> !this.validFields.includes(field));
+    
+    // If it's a duplicate entry, or a field is invalid then return false, otherwise add to the db array.
+    return (this.db.some((x) => x.title === input.title) || invalidFields.length) ? false : this.db.push(input);
+```
+
+
+
 
 # Node Technical Assessment
 
